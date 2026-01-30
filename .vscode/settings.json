@@ -3,5 +3,27 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
-  }
+  },
+  "editor.lineNumbers": "off",
+  "editor.padding.top": 2,
+  "editor.padding.bottom": 2,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.fontSize": 16,
+  "editor.lineHeight": 4,
+  "editor.suggestFontSize": 15,
+  // "editor.suggestLineHeight": 4,
+  "breadcrumbs.enabled": false,
+  "workbench.tips.enabled": false,
+  "workbench.statusBar.visible": false,
+  // "workbench.editor.showTabs": "single",
+  "git.enableSmartCommit": true,
+  "workbench.editor.editorActionsLocation": "hidden",
+  // "workbench.activityBar.location": "hidden",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "editor.lightbulb.enabled": "off",
+  "editor.selectionHighlight": false,
+  "editor.overviewRulerBorder": false,
+  "editor.renderLineHighlight": "none",
+  "editor.occurrencesHighlight": "off"
 }
