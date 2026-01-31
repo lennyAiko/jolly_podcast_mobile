@@ -1,5 +1,5 @@
 import { icons } from "@/constants";
-import { RegistrationSchema } from "@/schema/auth-schema";
+import { OtpSchema } from "@/schema/auth-schema";
 import {
   useRegistrationData,
   useRegistrationStore,
@@ -27,7 +27,7 @@ const OtpScreen = () => {
     prevStep();
   };
 
-  const handleSubmitLogic = async (otp: string) => {
+  const handleOtpSubmitLogic = async (otp: string) => {
     updateData({ otp: otp });
     nextStep();
   };
@@ -92,8 +92,8 @@ const OtpScreen = () => {
 
           <Formik
             initialValues={{ otp: "" }}
-            validationSchema={RegistrationSchema}
-            onSubmit={({ otp }) => handleSubmitLogic(otp)}
+            validationSchema={OtpSchema}
+            onSubmit={({ otp }) => handleOtpSubmitLogic(otp)}
           >
             {({
               handleChange,
@@ -107,10 +107,9 @@ const OtpScreen = () => {
               <View className="flex flex-col gap-5 py-5 w-full">
                 <View className="flex flex-row gap-1 items-center px-5 py-2 w-full text-base bg-white rounded-full border-2 border-primary-300">
                   <TextInput
-                    onChangeText={handleChange("password")}
-                    onBlur={handleBlur("password")}
+                    onChangeText={handleChange("otp")}
+                    onBlur={handleBlur("otp")}
                     value={values.otp}
-                    secureTextEntry
                     autoCapitalize="none"
                     placeholder="Enter code"
                     className="text-sm font-nunito-semi-bold text-secondary-200"
