@@ -1,5 +1,6 @@
 import { icons, images } from "@/constants";
-import { LoginSchema } from "@/schema/auth-schema";
+import { RegistrationSchema } from "@/schema/auth-schema";
+import { useRegistrationStore } from "@/store/registrationStore";
 import { ResizeMode } from "expo-av";
 import { router } from "expo-router";
 import { Formik } from "formik";
@@ -16,6 +17,19 @@ import {
 } from "react-native";
 
 const PhoneScreen = () => {
+  const { data, updateData, nextStep, prevStep, resetStep } =
+    useRegistrationStore();
+
+  // useEffect(() => {
+  //   resetStep();
+  // }, []);
+
+  const handleSubmitLogic = async (phone: string) => {
+    updateData({ phoneNumber: phone });
+    console.log(phone);
+    nextStep();
+  };
+
   return (
     <View className="pb-14 w-full h-full">
       <View
@@ -55,9 +69,9 @@ const PhoneScreen = () => {
           </View>
 
           <Formik
-            initialValues={{ password: "" }}
-            validationSchema={LoginSchema}
-            onSubmit={() => router.push("/(auth)/login")}
+            initialValues={{ phoneNumber: data.phoneNumber || "" }}
+            validationSchema={RegistrationSchema}
+            onSubmit={({ phoneNumber }) => handleSubmitLogic(phoneNumber)}
           >
             {({
               handleChange,
@@ -69,23 +83,22 @@ const PhoneScreen = () => {
               handleBlur,
             }) => (
               <View className="flex flex-col gap-5 py-5 w-full">
-                <View className="flex flex-row gap-1 items-center px-5 py-2 w-full text-base bg-white rounded-full border-2 border-primary-300">
+                <View className="flex flex-row gap-3 items-center px-5 py-2 w-full text-base bg-white rounded-full border-2 border-primary-300">
                   <Image source={icons.nigeria} className="size-5" />
                   <TextInput
-                    onChangeText={handleChange("password")}
-                    onBlur={handleBlur("password")}
-                    value={values.password}
-                    secureTextEntry
+                    onChangeText={handleChange("phoneNumber")}
+                    // onBlur={handleBlur("phoneNumber")}
+                    value={values.phoneNumber}
                     autoCapitalize="none"
                     placeholder="Enter your phone number"
                     className="text-sm font-nunito-semi-bold text-secondary-200"
                   />
-                  {errors.password && touched.password && (
-                    <Text className="px-5 mt-1 text-xs text-red-500">
-                      {errors.password}
-                    </Text>
-                  )}
                 </View>
+                {errors.phoneNumber && touched.phoneNumber && (
+                  <Text className="px-5 mt-1 text-xs text-red-500">
+                    {errors.phoneNumber}
+                  </Text>
+                )}
                 <TouchableOpacity
                   onPress={handleSubmit}
                   disabled={isSubmitting}
@@ -107,9 +120,18 @@ const PhoneScreen = () => {
             By proceeding, you agree and accept our T&C
           </Text>
 
-          <Text className="mt-5 text-sm text-white font-nunito-extra-bold">
+          <Text className="mt-2 text-sm text-white font-nunito-extra-bold">
             BECOME A PODCAST CREATOR
           </Text>
+
+          <TouchableOpacity
+            className="flex flex-col justify-center items-center mt-8"
+            onPress={() => router.push("/(auth)/login")}
+          >
+            <Text className="text-sm text-white font-nunito">
+              Already have an account? sign in
+            </Text>
+          </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     </View>

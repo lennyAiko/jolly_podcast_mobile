@@ -1,23 +1,32 @@
 import { icons } from "@/constants";
 import { LoginSchema } from "@/schema/auth-schema";
-import { useRegistrationData } from "@/store/registrationStore";
+import {
+  useRegistrationData,
+  useRegistrationStore,
+} from "@/store/registrationStore";
 import { ResizeMode, Video } from "expo-av";
 import { router } from "expo-router";
 import { Formik } from "formik";
 import React from "react";
 import {
-    ActivityIndicator,
-    Image,
-    KeyboardAvoidingView,
-    Platform,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 const OtpScreen = () => {
   const registrationData = useRegistrationData();
+
+  const { prevStep } = useRegistrationStore();
+
+  const handlePrevious = () => {
+    prevStep();
+  };
 
   return (
     <View className="pb-14 w-full h-full">
@@ -46,6 +55,18 @@ const OtpScreen = () => {
         isLooping
         isMuted
       />
+
+      <TouchableOpacity
+        className="flex z-50 flex-row gap-2 items-center p-5 mx-5 my-10 rounded-full"
+        onPress={handlePrevious}
+      >
+        <Image
+          source={icons.arrowLeft}
+          className="size-4"
+          tintColor="#FFFFFF"
+        />
+        <Text className="text-white">Back</Text>
+      </TouchableOpacity>
 
       <KeyboardAvoidingView
         behavior="padding"

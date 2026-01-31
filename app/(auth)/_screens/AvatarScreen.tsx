@@ -1,17 +1,26 @@
 import { icons, images } from "@/constants";
 import { avatarList } from "@/constants/data";
+import { useRegistrationStore } from "@/store/registrationStore";
 import { ResizeMode } from "expo-av";
 import React, { useState } from "react";
 import {
-    ActivityIndicator,
-    Image,
-    Text,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 const AvatarScreen = () => {
   const [avatar, setAvatar] = useState<string>("");
+
+  const { data, updateData, nextStep, prevStep, resetStep } =
+    useRegistrationStore();
+
+  const handlePrevious = () => {
+    console.log("Pressed");
+    prevStep();
+  };
 
   const handleSelectAvatar = (avatar: string) => {
     setAvatar(avatar);
@@ -30,6 +39,17 @@ const AvatarScreen = () => {
         }}
         resizeMode={ResizeMode.COVER}
       />
+      <TouchableOpacity
+        className="flex z-50 flex-row gap-2 items-center p-5 mx-5 my-10 rounded-full"
+        onPress={handlePrevious}
+      >
+        <Image
+          source={icons.arrowLeft}
+          className="size-4"
+          tintColor="#FFFFFF"
+        />
+        <Text className="text-white">Back</Text>
+      </TouchableOpacity>
       <View className="px-8">
         <View className="flex flex-col gap-1 items-start my-2 w-full">
           <Image
@@ -42,8 +62,11 @@ const AvatarScreen = () => {
           </Text>
           <View className="flex flex-row flex-wrap gap-x-4 gap-y-10 justify-center items-center">
             {avatarList.map((item, index) => (
-              <TouchableOpacity onPress={() => handleSelectAvatar(item.avatar)}>
-                <Image source={item.avatar} className="size-28" key={index} />
+              <TouchableOpacity
+                key={index}
+                onPress={() => handleSelectAvatar(item.avatar)}
+              >
+                <Image source={item.avatar} className="size-24" key={index} />
                 <Image
                   source={icons.correct}
                   className={`${item.avatar === avatar ? "" : "hidden"}  absolute right-0 bottom-0 size-8`}

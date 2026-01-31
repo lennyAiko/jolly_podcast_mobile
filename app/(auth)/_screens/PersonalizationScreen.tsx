@@ -1,14 +1,16 @@
 import { icons, images } from "@/constants";
 import { personalizationData } from "@/constants/data";
-import { useRegistrationData } from "@/store/registrationStore";
+import {
+  useRegistrationData
+} from "@/store/registrationStore";
 import { ResizeMode } from "expo-av";
 import React, { useState } from "react";
 import {
-    ActivityIndicator,
-    Image,
-    Text,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 const PersonlizedView = ({

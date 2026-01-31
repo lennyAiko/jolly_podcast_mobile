@@ -24,6 +24,7 @@ interface RegistrationStore {
   prevStep: () => void;
   updateData: (updates: Partial<RegistrationData>) => void;
   resetRegistration: () => void;
+  resetStep: () => void;
   completeRegistration: () => Promise<void>;
 }
 
@@ -44,7 +45,7 @@ const initialData: RegistrationData = {
 export const useRegistrationStore = create<RegistrationStore>()(
   persist(
     (set, get) => ({
-      currentStep: 5,
+      currentStep: 1,
       data: initialData,
 
       setStep: (step) => set({ currentStep: step }),
@@ -87,6 +88,8 @@ export const useRegistrationStore = create<RegistrationStore>()(
           });
         }
       },
+
+      resetStep: () => set({ currentStep: 1 }),
     }),
     {
       name: "registration-storage",
