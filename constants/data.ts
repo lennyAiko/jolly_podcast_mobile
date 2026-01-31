@@ -61,3 +61,86 @@ export const registrationScreens = [
     title: "Personalization",
   },
 ];
+
+export const personalizationData = [
+  {
+    id: 1,
+    title: "True Crime",
+  },
+  {
+    id: 2,
+    title: "Comedy",
+  },
+  {
+    id: 3,
+    title: "News",
+  },
+  {
+    id: 4,
+    title: "Sports",
+  },
+  {
+    id: 5,
+    title: "Business",
+  },
+  {
+    id: 6,
+    title: "Self-Improvement",
+  },
+  {
+    id: 7,
+    title: "Technology",
+  },
+  {
+    id: 8,
+    title: "History",
+  },
+  {
+    id: 9,
+    title: "Science",
+  },
+  {
+    id: 10,
+    title: "Health",
+  },
+  {
+    id: 11,
+    title: "Travel",
+  },
+  {
+    id: 12,
+    title: "Food",
+  },
+  {
+    id: 13,
+    title: "Arts",
+  },
+  {
+    id: 14,
+    title: "Music",
+  },
+  {
+    id: 15,
+    title: "Education",
+  },
+  {
+    id: 16,
+    title: "Spirituality",
+  },
+  {
+    id: 17,
+    title: "Philosophy",
+  },
+  {
+    id: 18,
+    title: "Fiction",
+  },
+  {
+    id: 19,
+    title: "Kids",
+  },
+  {
+    id: 20,
+    title: "Religion",
+  },
+];

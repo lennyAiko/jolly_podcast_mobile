@@ -1,3 +1,4 @@
+import add from "@/assets/icons/add.png";
 import arrowDown from "@/assets/icons/arrow-down.png";
 import arrowLeft from "@/assets/icons/arrow-left.png";
 import arrowRight from "@/assets/icons/arrow-right.png";
@@ -15,6 +16,7 @@ import category from "@/assets/icons/category.png";
 import discover from "@/assets/icons/discover.png";
 import headphones from "@/assets/icons/headphones.png";
 import heart from "@/assets/icons/heart.png";
+import hide from "@/assets/icons/hide.png";
 import jollyicon1 from "@/assets/icons/icon.png";
 import jollyicon2 from "@/assets/icons/jolly-icon.png";
 import next from "@/assets/icons/next.png";
@@ -25,11 +27,13 @@ import play from "@/assets/icons/play.png";
 import playlist from "@/assets/icons/playlist.png";
 import plus from "@/assets/icons/plus.png";
 import previous from "@/assets/icons/previous.png";
+import remove from "@/assets/icons/remove.png";
 import search from "@/assets/icons/search.png";
 import share from "@/assets/icons/share.png";
 import skipleft from "@/assets/icons/skip-left.png";
 import skipright from "@/assets/icons/skip-right.png";
 import star from "@/assets/icons/star.png";
+import view from "@/assets/icons/view.png";
 
 import onboarding2 from "@/assets/videos/onboarding2.mp4";
 
@@ -69,6 +73,10 @@ export const icons = {
   avatar7,
   avatar8,
   avatar9,
+  view,
+  hide,
+  add,
+  remove,
 };
 
 export const videos = {
