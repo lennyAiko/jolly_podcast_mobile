@@ -26,7 +26,6 @@ const PhoneScreen = () => {
 
   const handleSubmitLogic = async (phone: string) => {
     updateData({ phoneNumber: phone });
-    console.log(phone);
     nextStep();
   };
 

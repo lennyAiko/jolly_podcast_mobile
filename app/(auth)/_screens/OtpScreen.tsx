@@ -1,11 +1,10 @@
 import { icons } from "@/constants";
-import { LoginSchema } from "@/schema/auth-schema";
+import { RegistrationSchema } from "@/schema/auth-schema";
 import {
   useRegistrationData,
   useRegistrationStore,
 } from "@/store/registrationStore";
 import { ResizeMode, Video } from "expo-av";
-import { router } from "expo-router";
 import { Formik } from "formik";
 import React from "react";
 import {
@@ -22,10 +21,15 @@ import {
 const OtpScreen = () => {
   const registrationData = useRegistrationData();
 
-  const { prevStep } = useRegistrationStore();
+  const { prevStep, updateData, nextStep } = useRegistrationStore();
 
   const handlePrevious = () => {
     prevStep();
+  };
+
+  const handleSubmitLogic = async (otp: string) => {
+    updateData({ otp: otp });
+    nextStep();
   };
 
   return (
@@ -87,9 +91,9 @@ const OtpScreen = () => {
           </View>
 
           <Formik
-            initialValues={{ password: "" }}
-            validationSchema={LoginSchema}
-            onSubmit={() => router.push("/(auth)/login")}
+            initialValues={{ otp: "" }}
+            validationSchema={RegistrationSchema}
+            onSubmit={({ otp }) => handleSubmitLogic(otp)}
           >
             {({
               handleChange,
@@ -105,15 +109,15 @@ const OtpScreen = () => {
                   <TextInput
                     onChangeText={handleChange("password")}
                     onBlur={handleBlur("password")}
-                    value={values.password}
+                    value={values.otp}
                     secureTextEntry
                     autoCapitalize="none"
                     placeholder="Enter code"
                     className="text-sm font-nunito-semi-bold text-secondary-200"
                   />
-                  {errors.password && touched.password && (
+                  {errors.otp && touched.otp && (
                     <Text className="px-5 mt-1 text-xs text-red-500">
-                      {errors.password}
+                      {errors.otp}
                     </Text>
                   )}
                 </View>
