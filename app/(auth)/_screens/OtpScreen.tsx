@@ -1,6 +1,7 @@
-import { icons, images } from "@/constants";
+import { icons } from "@/constants";
 import { LoginSchema } from "@/schema/auth-schema";
-import { ResizeMode } from "expo-av";
+import { useRegistrationData } from "@/store/registrationStore";
+import { ResizeMode, Video } from "expo-av";
 import { router } from "expo-router";
 import { Formik } from "formik";
 import { default as React } from "react";
@@ -16,6 +17,8 @@ import {
 } from "react-native";
 
 const OtpScreen = () => {
+  const registrationData = useRegistrationData();
+
   return (
     <View className="pb-14 w-full h-full">
       <View
@@ -29,12 +32,19 @@ const OtpScreen = () => {
           zIndex: 1,
         }}
       />
-
-      <Image
-        source={images.onboarding1}
-        className="flex w-full h-screen"
+      <Video
+        source={require("@/assets/videos/onboarding2.mp4")}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+        }}
         resizeMode={ResizeMode.COVER}
-        style={{ position: "absolute", top: 0, left: 0, bottom: 0, right: 0 }}
+        shouldPlay
+        isLooping
+        isMuted
       />
 
       <KeyboardAvoidingView
@@ -43,14 +53,15 @@ const OtpScreen = () => {
         className="z-50 flex-1"
       >
         <View className="flex-1 justify-end items-center px-8">
-          <View className="flex flex-col gap-1 items-center px-5 my-2 w-full">
+          <View className="flex flex-col gap-1 items-start px-3 my-2 w-full">
             <Image
               source={icons.jollyicon2}
               className="-mb-10 size-40"
               resizeMode={ResizeMode.CONTAIN}
             />
-            <Text className="px-3 text-xl text-center text-white font-nunito-extra-bold">
-              PODCASTS FOR AFRICA, BY AFRICANS
+            <Text className="text-base text-white text-start font-nunito-bold">
+              Enter the 6 digit code sent to your phone number{" "}
+              {registrationData.phoneNumber || "08023400000"}
             </Text>
           </View>
 
@@ -70,15 +81,14 @@ const OtpScreen = () => {
             }) => (
               <View className="flex flex-col gap-5 py-5 w-full">
                 <View className="flex flex-row gap-1 items-center px-5 py-2 w-full text-base bg-white rounded-full border-2 border-primary-300">
-                  <Image source={icons.nigeria} className="size-5" />
                   <TextInput
                     onChangeText={handleChange("password")}
                     onBlur={handleBlur("password")}
                     value={values.password}
                     secureTextEntry
                     autoCapitalize="none"
-                    placeholder="Enter your phone number"
-                    className="font-nunito-semi-bold text-secondary-200"
+                    placeholder="Enter code"
+                    className="text-sm font-nunito-semi-bold text-secondary-200"
                   />
                   {errors.password && touched.password && (
                     <Text className="px-5 mt-1 text-xs text-red-500">
@@ -102,14 +112,6 @@ const OtpScreen = () => {
               </View>
             )}
           </Formik>
-
-          <Text className="mb-10 text-xs text-white font-nunito">
-            By proceeding, you agree and accept our T&C
-          </Text>
-
-          <Text className="mt-5 text-sm text-white font-nunito-extra-bold">
-            BECOME A PODCAST CREATOR
-          </Text>
         </View>
       </KeyboardAvoidingView>
     </View>

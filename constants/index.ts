@@ -33,6 +33,7 @@ import star from "@/assets/icons/star.png";
 
 import onboarding2 from "@/assets/videos/onboarding2.mp4";
 
+import gradientBg from "@/assets/images/gradient-bg.png";
 import onboarding1 from "@/assets/images/onboarding1.png";
 
 export const icons = {
@@ -76,4 +77,5 @@ export const videos = {
 
 export const images = {
   onboarding1,
+  gradientBg,
 };

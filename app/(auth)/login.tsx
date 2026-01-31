@@ -4,14 +4,14 @@ import { router } from "expo-router";
 import { Formik } from "formik";
 import React from "react";
 import {
-    ActivityIndicator,
-    Alert,
-    KeyboardAvoidingView,
-    Platform,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 const Login = () => {
@@ -99,7 +99,7 @@ const Login = () => {
                     secureTextEntry
                     autoCapitalize="none"
                     placeholder="Enter your password"
-                    className="px-5 py-4 w-full text-base bg-white rounded-full border-2 font-nunito-semi-bold text-secondary-200 border-primary-300"
+                    className="px-5 py-4 w-full text-sm bg-white rounded-full border-2 font-nunito-semi-bold text-secondary-200 border-primary-300"
                   />
                   {errors.password && touched.password && (
                     <Text className="px-5 mt-1 text-xs text-red-500">

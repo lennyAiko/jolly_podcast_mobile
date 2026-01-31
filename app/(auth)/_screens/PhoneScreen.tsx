@@ -5,14 +5,14 @@ import { router } from "expo-router";
 import { Formik } from "formik";
 import { default as React } from "react";
 import {
-    ActivityIndicator,
-    Image,
-    KeyboardAvoidingView,
-    Platform,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 const PhoneScreen = () => {
@@ -78,7 +78,7 @@ const PhoneScreen = () => {
                     secureTextEntry
                     autoCapitalize="none"
                     placeholder="Enter your phone number"
-                    className="font-nunito-semi-bold text-secondary-200"
+                    className="text-sm font-nunito-semi-bold text-secondary-200"
                   />
                   {errors.password && touched.password && (
                     <Text className="px-5 mt-1 text-xs text-red-500">
