@@ -13,6 +13,7 @@ import avatar7 from "@/assets/icons/avatar7.png";
 import avatar8 from "@/assets/icons/avatar8.png";
 import avatar9 from "@/assets/icons/avatar9.png";
 import category from "@/assets/icons/category.png";
+import close from "@/assets/icons/close.png";
 import discover from "@/assets/icons/discover.png";
 import headphones from "@/assets/icons/headphones.png";
 import heart from "@/assets/icons/heart.png";
@@ -27,7 +28,6 @@ import play from "@/assets/icons/play.png";
 import playlist from "@/assets/icons/playlist.png";
 import plus from "@/assets/icons/plus.png";
 import previous from "@/assets/icons/previous.png";
-import remove from "@/assets/icons/remove.png";
 import search from "@/assets/icons/search.png";
 import share from "@/assets/icons/share.png";
 import skipleft from "@/assets/icons/skip-left.png";
@@ -76,7 +76,7 @@ export const icons = {
   view,
   hide,
   add,
-  remove,
+  close,
 };
 
 export const videos = {
