@@ -1,6 +1,6 @@
-import { icons, images } from "@/constants";
-import { avatarList } from "@/constants/data";
 import { useRegistrationStore } from "@/store/registrationStore";
+import { icons, images } from "@/utils";
+import { avatarList } from "@/utils/data";
 import { ResizeMode } from "expo-av";
 import React, { useState } from "react";
 import {
@@ -14,8 +14,7 @@ import {
 const AvatarScreen = () => {
   const [avatar, setAvatar] = useState<string>("");
 
-  const { data, updateData, nextStep, prevStep, resetStep } =
-    useRegistrationStore();
+  const { data, updateData, nextStep, prevStep } = useRegistrationStore();
 
   const handlePrevious = () => {
     console.log("Pressed");

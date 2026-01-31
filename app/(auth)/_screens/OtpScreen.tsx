@@ -1,9 +1,9 @@
-import { icons } from "@/constants";
 import { OtpSchema } from "@/schema/auth-schema";
 import {
   useRegistrationData,
   useRegistrationStore,
 } from "@/store/registrationStore";
+import { icons } from "@/utils";
 import { ResizeMode, Video } from "expo-av";
 import { Formik } from "formik";
 import React from "react";

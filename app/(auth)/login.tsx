@@ -1,8 +1,9 @@
 import { LoginSchema } from "@/schema/auth-schema";
+import { useRegistrationStore } from "@/store/registrationStore";
 import { ResizeMode, Video } from "expo-av";
 import { router } from "expo-router";
 import { Formik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ActivityIndicator,
   Alert,
@@ -15,6 +16,13 @@ import {
 } from "react-native";
 
 const Login = () => {
+  const { data, updateData, nextStep, prevStep, resetStep } =
+    useRegistrationStore();
+
+  useEffect(() => {
+    resetStep();
+  }, []);
+
   const handleLoginSubmit = (
     values: { password: string },
     {

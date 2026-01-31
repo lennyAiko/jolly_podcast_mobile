@@ -1,6 +1,6 @@
-import { icons, images } from "@/constants";
-import { RegistrationSchema } from "@/schema/auth-schema";
+import { PhoneSchema } from "@/schema/auth-schema";
 import { useRegistrationStore } from "@/store/registrationStore";
+import { icons, images } from "@/utils";
 import { ResizeMode } from "expo-av";
 import { router } from "expo-router";
 import { Formik } from "formik";
@@ -69,7 +69,7 @@ const PhoneScreen = () => {
 
           <Formik
             initialValues={{ phoneNumber: data.phoneNumber || "" }}
-            validationSchema={RegistrationSchema}
+            validationSchema={PhoneSchema}
             onSubmit={({ phoneNumber }) => handleSubmitLogic(phoneNumber)}
           >
             {({

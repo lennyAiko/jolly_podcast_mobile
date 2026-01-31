@@ -1,8 +1,6 @@
-import { icons, images } from "@/constants";
-import { personalizationData } from "@/constants/data";
-import {
-  useRegistrationData
-} from "@/store/registrationStore";
+import { useRegistrationData } from "@/store/registrationStore";
+import { icons, images } from "@/utils";
+import { personalizationData } from "@/utils/data";
 import { ResizeMode } from "expo-av";
 import React, { useState } from "react";
 import {

@@ -1,19 +1,19 @@
-import { icons, images } from "@/constants";
-import { LoginSchema } from "@/schema/auth-schema";
+import { ProfileSchema } from "@/schema/auth-schema";
 import { useRegistrationData } from "@/store/registrationStore";
+import { icons, images } from "@/utils";
 import { ResizeMode } from "expo-av";
 import { router } from "expo-router";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import {
-    ActivityIndicator,
-    Image,
-    KeyboardAvoidingView,
-    Platform,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 const ProfileScreen = () => {
@@ -57,7 +57,7 @@ const ProfileScreen = () => {
 
           <Formik
             initialValues={{ password: "" }}
-            validationSchema={LoginSchema}
+            validationSchema={ProfileSchema}
             onSubmit={() => router.push("/(auth)/login")}
           >
             {({

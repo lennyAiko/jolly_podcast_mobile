@@ -1,5 +1,5 @@
-import { registrationScreens } from "@/constants/data";
 import { useRegistrationStep } from "@/store/registrationStore";
+import { registrationScreens } from "@/utils/data";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
 import AvatarScreen from "./_screens/AvatarScreen";
