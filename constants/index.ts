@@ -14,6 +14,7 @@ import avatar8 from "@/assets/icons/avatar8.png";
 import avatar9 from "@/assets/icons/avatar9.png";
 import category from "@/assets/icons/category.png";
 import close from "@/assets/icons/close.png";
+import correct from "@/assets/icons/correct.png";
 import discover from "@/assets/icons/discover.png";
 import headphones from "@/assets/icons/headphones.png";
 import heart from "@/assets/icons/heart.png";
@@ -76,6 +77,7 @@ export const icons = {
   view,
   hide,
   add,
+  correct,
   close,
 };
 

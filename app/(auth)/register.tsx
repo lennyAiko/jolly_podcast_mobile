@@ -2,6 +2,7 @@ import { registrationScreens } from "@/constants/data";
 import { useRegistrationStep } from "@/store/registrationStore";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import AvatarScreen from "./_screens/AvatarScreen";
 import OtpScreen from "./_screens/OtpScreen";
 import PersonalizationScreen from "./_screens/PersonalizationScreen";
 import PhoneScreen from "./_screens/PhoneScreen";
@@ -18,11 +19,12 @@ const Register = () => {
         return registrationScreens[0].title;
       case 2:
         return registrationScreens[1].title;
-
       case 3:
         return registrationScreens[2].title;
       case 4:
         return registrationScreens[3].title;
+      case 5:
+        return registrationScreens[4].title;
       default:
         return registrationScreens[0].title;
     }
@@ -47,6 +49,10 @@ const Register = () => {
       <Stack.Screen
         name={registrationScreens[3].title}
         component={PersonalizationScreen}
+      />
+      <Stack.Screen
+        name={registrationScreens[4].title}
+        component={AvatarScreen}
       />
     </Stack.Navigator>
   );
