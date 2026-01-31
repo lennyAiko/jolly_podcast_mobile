@@ -38,3 +38,26 @@ export const avatarList = [
     avatar: icons.avatar9,
   },
 ];
+
+export const registrationScreens = [
+  {
+    id: 1,
+    title: "Phone",
+  },
+  {
+    id: 2,
+    title: "Otp",
+  },
+  {
+    id: 3,
+    title: "Details",
+  },
+  {
+    id: 4,
+    title: "Avatar",
+  },
+  {
+    id: 5,
+    title: "Personalization",
+  },
+];

@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const _layout = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1">
       <Slot />
     </SafeAreaView>
   );

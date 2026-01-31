@@ -1,11 +1,12 @@
+import { icons, images } from "@/constants";
 import { LoginSchema } from "@/schema/auth-schema";
-import { ResizeMode, Video } from "expo-av";
+import { ResizeMode } from "expo-av";
 import { router } from "expo-router";
 import { Formik } from "formik";
-import React from "react";
+import { default as React } from "react";
 import {
     ActivityIndicator,
-    Alert,
+    Image,
     KeyboardAvoidingView,
     Platform,
     Text,
@@ -14,26 +15,7 @@ import {
     View,
 } from "react-native";
 
-const Login = () => {
-  const handleLoginSubmit = (
-    values: { password: string },
-    {
-      setSubmitting,
-      resetForm,
-    }: {
-      setSubmitting: (isSubmitting: boolean) => void;
-      resetForm: () => void;
-    },
-  ) => {
-    console.log("Form values:", values);
-
-    setTimeout(() => {
-      Alert.alert("Success", `Logged in the user ${values.password}`);
-      setSubmitting(false);
-      resetForm();
-    }, 1000);
-  };
-
+const OtpScreen = () => {
   return (
     <View className="pb-14 w-full h-full">
       <View
@@ -47,39 +29,35 @@ const Login = () => {
           zIndex: 1,
         }}
       />
-      <Video
-        source={require("@/assets/videos/onboarding2.mp4")}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-        }}
+
+      <Image
+        source={images.onboarding1}
+        className="flex w-full h-screen"
         resizeMode={ResizeMode.COVER}
-        shouldPlay
-        isLooping
-        isMuted
+        style={{ position: "absolute", top: 0, left: 0, bottom: 0, right: 0 }}
       />
+
       <KeyboardAvoidingView
         behavior="padding"
         keyboardVerticalOffset={Platform.OS === "android" ? 0 : 40}
         className="z-50 flex-1"
       >
         <View className="flex-1 justify-end items-center px-8">
-          <View className="flex flex-col gap-1 items-start px-5 my-2 w-full">
-            <Text className="text-xl text-white font-nunito-extra-bold">
-              WELCOME BACK
-            </Text>
-            <Text className="text-white font-nunito">
-              Enter your password to continue
+          <View className="flex flex-col gap-1 items-center px-5 my-2 w-full">
+            <Image
+              source={icons.jollyicon2}
+              className="-mb-10 size-40"
+              resizeMode={ResizeMode.CONTAIN}
+            />
+            <Text className="px-3 text-xl text-center text-white font-nunito-extra-bold">
+              PODCASTS FOR AFRICA, BY AFRICANS
             </Text>
           </View>
 
           <Formik
             initialValues={{ password: "" }}
             validationSchema={LoginSchema}
-            onSubmit={handleLoginSubmit}
+            onSubmit={() => router.push("/(auth)/login")}
           >
             {({
               handleChange,
@@ -91,15 +69,16 @@ const Login = () => {
               handleBlur,
             }) => (
               <View className="flex flex-col gap-5 py-5 w-full">
-                <View className="flex flex-col gap-1 items-start">
+                <View className="flex flex-row gap-1 items-center px-5 py-2 w-full text-base bg-white rounded-full border-2 border-primary-300">
+                  <Image source={icons.nigeria} className="size-5" />
                   <TextInput
                     onChangeText={handleChange("password")}
                     onBlur={handleBlur("password")}
                     value={values.password}
                     secureTextEntry
                     autoCapitalize="none"
-                    placeholder="Enter your password"
-                    className="px-5 py-4 w-full text-base bg-white rounded-full border-2 font-nunito-semi-bold text-secondary-200 border-primary-300"
+                    placeholder="Enter your phone number"
+                    className="font-nunito-semi-bold text-secondary-200"
                   />
                   {errors.password && touched.password && (
                     <Text className="px-5 mt-1 text-xs text-red-500">
@@ -124,24 +103,17 @@ const Login = () => {
             )}
           </Formik>
 
-          <TouchableOpacity className="flex flex-col justify-center items-center mt-5">
-            <Text className="text-sm text-white font-nunito-extra-bold">
-              Recover your password
-            </Text>
-          </TouchableOpacity>
+          <Text className="mb-10 text-xs text-white font-nunito">
+            By proceeding, you agree and accept our T&C
+          </Text>
 
-          <TouchableOpacity
-            className="flex flex-col justify-center items-center mt-5"
-            onPress={() => router.push("/(auth)/register")}
-          >
-            <Text className="text-sm text-white font-nunito-extra-bold">
-              Create an account
-            </Text>
-          </TouchableOpacity>
+          <Text className="mt-5 text-sm text-white font-nunito-extra-bold">
+            BECOME A PODCAST CREATOR
+          </Text>
         </View>
       </KeyboardAvoidingView>
     </View>
   );
 };
 
-export default Login;
+export default OtpScreen;
