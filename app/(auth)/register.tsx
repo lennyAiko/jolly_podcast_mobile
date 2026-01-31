@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import OtpScreen from "./_screens/OtpScreen";
 import PhoneScreen from "./_screens/PhoneScreen";
+import ProfileScreen from "./_screens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,9 @@ const Register = () => {
         return registrationScreens[0].title;
       case 2:
         return registrationScreens[1].title;
+
+      case 3:
+        return registrationScreens[2].title;
       default:
         return registrationScreens[0].title;
     }
@@ -33,6 +37,10 @@ const Register = () => {
         component={PhoneScreen}
       />
       <Stack.Screen name={registrationScreens[1].title} component={OtpScreen} />
+      <Stack.Screen
+        name={registrationScreens[2].title}
+        component={ProfileScreen}
+      />
     </Stack.Navigator>
   );
 };

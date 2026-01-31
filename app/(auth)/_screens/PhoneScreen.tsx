@@ -3,7 +3,7 @@ import { LoginSchema } from "@/schema/auth-schema";
 import { ResizeMode } from "expo-av";
 import { router } from "expo-router";
 import { Formik } from "formik";
-import { default as React } from "react";
+import React from "react";
 import {
   ActivityIndicator,
   Image,

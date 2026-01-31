@@ -44,7 +44,7 @@ const initialData: RegistrationData = {
 export const useRegistrationStore = create<RegistrationStore>()(
   persist(
     (set, get) => ({
-      currentStep: 2,
+      currentStep: 3,
       data: initialData,
 
       setStep: (step) => set({ currentStep: step }),

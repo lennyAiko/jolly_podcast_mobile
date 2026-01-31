@@ -16,9 +16,8 @@ import {
     View,
 } from "react-native";
 
-const OtpScreen = () => {
+const ProfileScreen = () => {
   const registrationData = useRegistrationData();
-
   return (
     <View className="pb-14 w-full h-full">
       <View
@@ -118,4 +117,4 @@ const OtpScreen = () => {
   );
 };
 
-export default OtpScreen;
+export default ProfileScreen;
