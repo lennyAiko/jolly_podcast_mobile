@@ -76,8 +76,8 @@ const Login = () => {
       >
         <View className="flex-1 justify-end items-center px-8">
           <View className="flex flex-col gap-1 items-start px-5 my-2 w-full">
-            <Text className="text-xl text-white font-nunito-extra-bold">
-              WELCOME BACK
+            <Text className="text-xl text-white uppercase font-nunito-extra-bold">
+              Welcome back
             </Text>
             <Text className="text-white font-nunito">
               Enter your password to continue
@@ -85,7 +85,7 @@ const Login = () => {
           </View>
 
           <Formik
-            initialValues={{ password: "" }}
+            initialValues={{ phoneNumber: "", password: "" }}
             validationSchema={LoginSchema}
             onSubmit={handleLoginSubmit}
           >
@@ -99,6 +99,21 @@ const Login = () => {
               handleBlur,
             }) => (
               <View className="flex flex-col gap-5 py-5 w-full">
+                <View className="flex flex-col gap-1 items-start">
+                  <TextInput
+                    onChangeText={handleChange("phoneNumber")}
+                    onBlur={handleBlur("phoneNumber")}
+                    value={values.phoneNumber}
+                    autoCapitalize="none"
+                    placeholder="Enter your phone number"
+                    className="px-5 py-4 w-full text-sm bg-white rounded-full border-2 font-nunito-semi-bold text-secondary-200 border-primary-300"
+                  />
+                  {errors.phoneNumber && touched.phoneNumber && (
+                    <Text className="px-5 mt-1 text-xs text-red-500">
+                      {errors.phoneNumber}
+                    </Text>
+                  )}
+                </View>
                 <View className="flex flex-col gap-1 items-start">
                   <TextInput
                     onChangeText={handleChange("password")}
