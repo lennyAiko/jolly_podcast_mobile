@@ -1,12 +1,13 @@
 import { LoginSchema } from "@/schema/auth-schema";
+import { useAuthData, useAuthStore } from "@/store/authStore";
 import { useRegistrationStore } from "@/store/registrationStore";
+import axiosInstance from "@/utils/axios";
 import { ResizeMode, Video } from "expo-av";
 import { router } from "expo-router";
 import { Formik } from "formik";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import {
   ActivityIndicator,
-  Alert,
   KeyboardAvoidingView,
   Platform,
   Text,
@@ -18,13 +19,17 @@ import {
 const Login = () => {
   const { data, updateData, nextStep, prevStep, resetStep } =
     useRegistrationStore();
+  const { user, token } = useAuthData();
+  const { setAuthData } = useAuthStore();
 
-  useEffect(() => {
-    resetStep();
-  }, []);
+  const [phoneNumber, setPhoneNumber] = useState<string>(
+    user?.phone_number || "",
+  );
 
-  const handleLoginSubmit = (
-    values: { password: string },
+  console.log("phoneNumber", phoneNumber.length);
+
+  const handleLoginSubmit = async (
+    values: { password: string; phoneNumber: string },
     {
       setSubmitting,
       resetForm,
@@ -33,13 +38,24 @@ const Login = () => {
       resetForm: () => void;
     },
   ) => {
-    console.log("Form values:", values);
+    console.log(phoneNumber);
+    const res = await axiosInstance.post("auth/login", {
+      phone_number: phoneNumber || values.phoneNumber,
+      password: values.password,
+    });
 
-    setTimeout(() => {
-      Alert.alert("Success", `Logged in the user ${values.password}`);
-      setSubmitting(false);
-      resetForm();
-    }, 1000);
+    console.log(res?.data?.data);
+
+    setAuthData({
+      user: res?.data?.data?.user,
+      token: res?.data?.data?.token,
+    });
+
+    console.log(user, token);
+
+    resetForm();
+
+    router.push("/(tabs)");
   };
 
   return (
@@ -99,21 +115,23 @@ const Login = () => {
               handleBlur,
             }) => (
               <View className="flex flex-col gap-5 py-5 w-full">
-                <View className="flex flex-col gap-1 items-start">
-                  <TextInput
-                    onChangeText={handleChange("phoneNumber")}
-                    onBlur={handleBlur("phoneNumber")}
-                    value={values.phoneNumber}
-                    autoCapitalize="none"
-                    placeholder="Enter your phone number"
-                    className="px-5 py-4 w-full text-sm bg-white rounded-full border-2 font-nunito-semi-bold text-secondary-200 border-primary-300"
-                  />
-                  {errors.phoneNumber && touched.phoneNumber && (
-                    <Text className="px-5 mt-1 text-xs text-red-500">
-                      {errors.phoneNumber}
-                    </Text>
-                  )}
-                </View>
+                {!(phoneNumber.length > 0) && (
+                  <View className="flex flex-col gap-1 items-start">
+                    <TextInput
+                      onChangeText={handleChange("phoneNumber")}
+                      onBlur={handleBlur("phoneNumber")}
+                      value={values.phoneNumber}
+                      autoCapitalize="none"
+                      placeholder="Enter your phone number"
+                      className="px-5 py-4 w-full text-sm bg-white rounded-full border-2 font-nunito-semi-bold text-secondary-200 border-primary-300"
+                    />
+                    {errors.phoneNumber && touched.phoneNumber && (
+                      <Text className="px-5 mt-1 text-xs text-red-500">
+                        {errors.phoneNumber}
+                      </Text>
+                    )}
+                  </View>
+                )}
                 <View className="flex flex-col gap-1 items-start">
                   <TextInput
                     onChangeText={handleChange("password")}

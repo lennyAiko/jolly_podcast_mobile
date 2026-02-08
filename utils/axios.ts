@@ -27,10 +27,11 @@ axiosInstance.interceptors.request.use(
 // Response interceptor
 axiosInstance.interceptors.response.use(
   (response) => {
+    console.log("Response:", response);
     return response;
   },
   (error) => {
-    // Handle errors globally
+    console.log("Error:", error);
     return Promise.reject(error);
   },
 );
